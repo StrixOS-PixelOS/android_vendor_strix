@@ -1,0 +1,12 @@
+diff --git a/media/libstagefright/exports.lds b/media/libstagefright/exports.lds
+index ee38550b9f..35f9e4105d 100644
+--- a/media/libstagefright/exports.lds
++++ b/media/libstagefright/exports.lds
+@@ -507,4 +507,5 @@
+         ogg_page_*;
+         ogg_stream_*;
+         ogg_sync_*;
+-};
++        _ZN7android15ANetworkSession10threadLoopEv*;
++};
+\ No newline at end of file
