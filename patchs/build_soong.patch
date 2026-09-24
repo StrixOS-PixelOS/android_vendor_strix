@@ -1,0 +1,21 @@
+diff --git a/java/rro.go b/java/rro.go
+index 1676d9c68..60d1d3b7e 100644
+--- a/java/rro.go
++++ b/java/rro.go
+@@ -22,6 +22,7 @@ import (
+ 
+ 	"github.com/google/blueprint"
+ 	"github.com/google/blueprint/proptools"
++	"strings"
+ )
+ 
+ //go:generate go run ../../blueprint/gobtools/codegen
+@@ -207,7 +208,7 @@ func (r *RuntimeResourceOverlay) GenerateAndroidBuildActions(ctx android.ModuleC
+ 
+ 	r.outputFile = signed
+ 	partition := rroPartition(ctx)
+-	r.installDir = android.PathForModuleInPartitionInstall(ctx, partition, "overlay", String(r.properties.Theme))
++	r.installDir = android.PathForModuleInPartitionInstall(ctx, partition, "overlay", strings.ReplaceAll(String(r.properties.Theme),"Lineage","Strix"))
+ 	ctx.InstallFile(r.installDir, r.outputFile.Base(), r.outputFile)
+ 
+ 	android.SetProvider(ctx, FlagsPackagesProvider, FlagsPackages{
