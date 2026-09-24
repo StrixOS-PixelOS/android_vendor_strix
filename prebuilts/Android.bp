@@ -1,0 +1,26 @@
+
+cc_prebuilt_binary {
+    name: "wg",
+    srcs: [
+        "product/bin/wg",
+    ],
+    strip: {
+        none: true,
+    },
+    installable: true,
+    product_specific: true,
+    compile_multilib: "64",
+}
+
+cc_prebuilt_binary {
+    name: "wg-quick",
+    srcs: [
+        "product/bin/wg-quick",
+    ],
+    strip: {
+        none: true,
+    },
+    installable: true,
+    product_specific: true,
+    compile_multilib: "64",
+}
