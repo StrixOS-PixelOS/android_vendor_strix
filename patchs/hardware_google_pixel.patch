@@ -1,0 +1,151 @@
+diff --git a/lineage_health/device.mk b/lineage_health/device.mk
+index 28ca9d07..163ef4e4 100644
+--- a/lineage_health/device.mk
++++ b/lineage_health/device.mk
+@@ -1,5 +1,5 @@
+ # Lineage Health
+ PRODUCT_PACKAGES += \
+-    vendor.lineage.health-service.default
++    vendor.strix.health-service.default
+ 
+ BOARD_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/lineage_health
+diff --git a/powershare/device.mk b/powershare/device.mk
+index e4f8544a..4cdabe94 100644
+--- a/powershare/device.mk
++++ b/powershare/device.mk
+@@ -2,6 +2,6 @@
+ $(call soong_config_set,lineage_powershare,powershare_path,/sys/class/power_supply/wireless/device/rtx)
+ 
+ PRODUCT_PACKAGES += \
+-    vendor.lineage.powershare-service.default
++    vendor.strix.powershare-service.default
+ 
+ BOARD_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/powershare
+diff --git a/touch/Android.bp b/touch/Android.bp
+index c1980a01..1928a48b 100644
+--- a/touch/Android.bp
++++ b/touch/Android.bp
+@@ -4,9 +4,9 @@
+ //
+ 
+ cc_binary {
+-    name: "vendor.lineage.touch-service.pixel",
+-    init_rc: ["vendor.lineage.touch-service.pixel.rc"],
+-    vintf_fragments: ["vendor.lineage.touch-service.pixel.xml"],
++    name: "vendor.strix.touch-service.pixel",
++    init_rc: ["vendor.strix.touch-service.pixel.rc"],
++    vintf_fragments: ["vendor.strix.touch-service.pixel.xml"],
+     vendor: true,
+     relative_install_path: "hw",
+     srcs: [
+@@ -18,6 +18,6 @@ cc_binary {
+         "liblog",
+         "libbinder_ndk",
+         "libutils",
+-        "vendor.lineage.touch-V1-ndk",
++        "vendor.strix.touch-V1-ndk",
+     ],
+ }
+diff --git a/touch/GloveMode.cpp b/touch/GloveMode.cpp
+index c92280bc..8543ffb5 100644
+--- a/touch/GloveMode.cpp
++++ b/touch/GloveMode.cpp
+@@ -18,7 +18,7 @@ constexpr const char* kTouchSensitivityProp = "persist.vendor.touch_sensitivity_
+ 
+ namespace aidl {
+ namespace vendor {
+-namespace lineage {
++namespace strix {
+ namespace touch {
+ 
+ ndk::ScopedAStatus GloveMode::getEnabled(bool* _aidl_return) {
+@@ -35,6 +35,6 @@ ndk::ScopedAStatus GloveMode::setEnabled(bool enable) {
+ }
+ 
+ }  // namespace touch
+-}  // namespace lineage
++}  // namespace strix
+ }  // namespace vendor
+ }  // namespace aidl
+diff --git a/touch/GloveMode.h b/touch/GloveMode.h
+index 04c7fa06..d1218a93 100644
+--- a/touch/GloveMode.h
++++ b/touch/GloveMode.h
+@@ -5,11 +5,11 @@
+ 
+ #pragma once
+ 
+-#include <aidl/vendor/lineage/touch/BnGloveMode.h>
++#include <aidl/vendor/strix/touch/BnGloveMode.h>
+ 
+ namespace aidl {
+ namespace vendor {
+-namespace lineage {
++namespace strix {
+ namespace touch {
+ 
+ class GloveMode : public BnGloveMode {
+@@ -19,6 +19,6 @@ class GloveMode : public BnGloveMode {
+ };
+ 
+ }  // namespace touch
+-}  // namespace lineage
++}  // namespace strix
+ }  // namespace vendor
+ }  // namespace aidl
+diff --git a/touch/device.mk b/touch/device.mk
+index ac588585..d68874d4 100644
+--- a/touch/device.mk
++++ b/touch/device.mk
+@@ -1,5 +1,5 @@
+ # Touch
+ PRODUCT_PACKAGES += \
+-    vendor.lineage.touch-service.pixel
++    vendor.strix.touch-service.pixel
+ 
+ BOARD_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/touch
+diff --git a/touch/service.cpp b/touch/service.cpp
+index 74cbc69c..8500799e 100644
+--- a/touch/service.cpp
++++ b/touch/service.cpp
+@@ -3,7 +3,7 @@
+  * SPDX-License-Identifier: Apache-2.0
+  */
+ 
+-#define LOG_TAG "vendor.lineage.touch-service.pixel"
++#define LOG_TAG "vendor.strix.touch-service.pixel"
+ 
+ #include "GloveMode.h"
+ 
+@@ -11,7 +11,7 @@
+ #include <android/binder_manager.h>
+ #include <android/binder_process.h>
+ 
+-using aidl::vendor::lineage::touch::GloveMode;
++using aidl::vendor::strix::touch::GloveMode;
+ 
+ int main() {
+     ABinderProcess_setThreadPoolMaxThreadCount(0);
+diff --git a/touch/vendor.lineage.touch-service.pixel.rc b/touch/vendor.lineage.touch-service.pixel.rc
+deleted file mode 100644
+index 9251b705..00000000
+--- a/touch/vendor.lineage.touch-service.pixel.rc
++++ /dev/null
+@@ -1,4 +0,0 @@
+-service vendor.touch-hal /vendor/bin/hw/vendor.lineage.touch-service.pixel
+-    class hal
+-    user system
+-    group system
+diff --git a/touch/vendor.lineage.touch-service.pixel.xml b/touch/vendor.lineage.touch-service.pixel.xml
+deleted file mode 100644
+index 45c175f5..00000000
+--- a/touch/vendor.lineage.touch-service.pixel.xml
++++ /dev/null
+@@ -1,7 +0,0 @@
+-<manifest version="1.0" type="device">
+-    <hal format="aidl">
+-        <name>vendor.lineage.touch</name>
+-        <version>1</version>
+-        <fqname>IGloveMode/default</fqname>
+-    </hal>
+-</manifest>
