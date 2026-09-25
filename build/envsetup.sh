@@ -1,6 +1,6 @@
 echo "apply strix patch..."
 
-STRIX_DIR=${ANDROID_BUILD_TOP}/vendor/strix
+STRIX_DIR=$1/vendor/strix
 
 . $STRIX_DIR/scripts/functions.sh
 
@@ -10,6 +10,6 @@ for patch in "$STRIX_DIR"/patchs/*.patch; do
 done
 
 
-cd ${ANDROID_BUILD_TOP}
+cd $1
 
 echo "apply strix patch end"

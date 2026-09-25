@@ -1,1 +1,2 @@
-echo "strix vendor vendorsetup.sh"
+ABT=$(pwd)
+. build/envsetup.sh "$ABT"
