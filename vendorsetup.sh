@@ -1,2 +1,4 @@
+echo "=========== start "===========
 ABT=$(pwd)
-. build/envsetup.sh "$ABT"
+bash "$ABT/vendor/strix/build/envsetup.sh" "$ABT"
+echo "=========== end "===========
