@@ -1,4 +1,5 @@
 echo "=========== start "===========
-ABT=$(pwd)
-bash "$ABT/vendor/strix/build/envsetup.sh" "$ABT"
+TOP=$(gettop)
+echo "$TOP"
+bash $TOP/vendor/strix/build/envsetup.sh "$TOP"
 echo "=========== end "===========

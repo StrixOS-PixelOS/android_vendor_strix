@@ -1,4 +1,4 @@
-echo "apply strix patch..."
+echo "apply strix patch... $1"
 
 STRIX_DIR=$1/vendor/strix
 
@@ -6,7 +6,7 @@ STRIX_DIR=$1/vendor/strix
 
 for patch in "$STRIX_DIR"/patchs/*.patch; do
     [ -f "$patch" ] || continue
-    strix_apply_patch "$patch"
+    strix_apply_patch "$1" "$patch"
 done
 
 
